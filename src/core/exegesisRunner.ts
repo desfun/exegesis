@@ -29,6 +29,8 @@ async function handleSecurity(operation: ResolvedOperation, context: ExegesisCon
         const matchedSchemes = Object.keys(authenticated);
         if (matchedSchemes.length === 1) {
             context.user = authenticated[matchedSchemes[0]].user;
+        } else if (matchedSchemes.length === 1) {
+            context.user = matchedSchemes.reduce((result,Scheme)=>Object.assign(result,authenticated[Scheme].user),{});
         }
     }
 }
